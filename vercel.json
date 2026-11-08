@@ -1,0 +1,23 @@
+{
+  "rewrites": [
+    {
+      "source": "/blog",
+      "destination": "https://indiandigitals.superblog.click/"
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "https://indiandigitals.superblog.click/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.(css|js|png|ico)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    }
+  ]
+}
