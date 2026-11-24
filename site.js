@@ -1,4 +1,64 @@
 (function(){
+// ============================================================
+// FREE TOOLS LIST (Add new tools here in the future!)
+// ============================================================
+var FREE_TOOLS = [
+  { name: 'Google Review QR Code Generator', url: '/free-tools/google-review-qr-code-generator/' }
+];
+
+// Inject "Free Tools" dropdown into Header & section into Footer on every page
+(function(){
+  if(!FREE_TOOLS.length) return;
+
+  // 1. Header Dropdown (matches .dd and .ddm classes in style.css)
+  var nav = document.querySelector('header.hdr nav.nav');
+  if(nav && !nav.querySelector('.free-tools-dd')){
+    var dd = document.createElement('div');
+    dd.className = 'dd free-tools-dd';
+    var topLink = document.createElement('a');
+    topLink.href = FREE_TOOLS[0].url;
+    topLink.innerHTML = 'Free Tools &#9662;';
+    var menu = document.createElement('div');
+    menu.className = 'ddm';
+    FREE_TOOLS.forEach(function(t){
+      var a = document.createElement('a');
+      a.href = t.url;
+      a.textContent = t.name;
+      menu.appendChild(a);
+    });
+    dd.appendChild(topLink);
+    dd.appendChild(menu);
+
+    // Insert right before "Insights" or "Contact"
+    var refLink = nav.querySelector('a[href="/blog"]') || nav.querySelector('a[href="/contact/"]');
+    if(refLink){
+      nav.insertBefore(dd, refLink);
+    } else {
+      nav.appendChild(dd);
+    }
+  }
+
+  // 2. Footer Section (adds "Free Tools" under the Company column)
+  var ftrGrid = document.querySelector('footer.ftr .fg');
+  if(ftrGrid && !ftrGrid.querySelector('.free-tools-ftr')){
+    var cols = ftrGrid.children;
+    var targetCol = cols.length >= 3 ? cols[2] : cols[cols.length - 1];
+    if(targetCol){
+      var h4 = document.createElement('h4');
+      h4.className = 'free-tools-ftr';
+      h4.style.marginTop = '18px';
+      h4.textContent = 'Free Tools';
+      targetCol.appendChild(h4);
+      FREE_TOOLS.forEach(function(t){
+        var a = document.createElement('a');
+        a.href = t.url;
+        a.textContent = t.name;
+        targetCol.appendChild(a);
+      });
+    }
+  }
+})();
+
 // WhatsApp popup
 try{if(!sessionStorage.getItem('wapop')){setTimeout(function(){var p=document.getElementById('wapop');if(p)p.hidden=false;},4000);}}catch(e){}
 // Web3Forms AJAX (same endpoint and access key as the original site)
