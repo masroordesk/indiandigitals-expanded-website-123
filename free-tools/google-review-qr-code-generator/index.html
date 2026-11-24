@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free Google Review Link &amp; QR Code Generator | Indian Digitals</title>
+  <meta name="description" content="Create a direct Google review link and custom QR code in seconds. Paste your Google Business link or Place ID, add your logo, and download high-res PNG or SVG files for free.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://indiandigitals.com/free-tools/google-review-qr-code-generator/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Google Review Link &amp; QR Code Generator | Indian Digitals">
+  <meta property="og:description" content="Generate your direct Google review link and printable QR code in seconds. No sign-up required, unlimited scans, and custom logo support.">
+  <meta property="og:url" content="https://indiandigitals.com/free-tools/google-review-qr-code-generator/">
+  <meta property="og:site_name" content="Indian Digitals">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Google Review Link & QR Code Generator",
+    "url": "https://indiandigitals.com/free-tools/google-review-qr-code-generator/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Indian Digitals",
+      "url": "https://indiandigitals.com"
+    },
+    "description": "Free online tool to generate a direct Google Business Profile review link from a Place ID or URL and create a downloadable PNG or SVG QR code with a custom logo."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I find my Google Place ID or review link?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Log in to your Google Business Profile, search your business name on Google, and click Ask for reviews to copy your short g.page review link. If you only have your Place ID from Google Maps, paste it into our generator to build the direct write-a-review URL automatically."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do these Google review QR codes expire or have a scan limit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The QR codes generated here are static codes that encode your direct Google review link. They never expire, require no subscription, and work for unlimited scans."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the QR code open the 5-star review box directly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. When a customer scans the code with their phone camera, it opens your Google Business Profile with the star rating and review box ready to fill out, as long as they are signed into a Google account."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it safe to put my logo in the center of the QR code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Our generator uses high error correction (Level H), which allows up to 30 percent of the code to be covered by your logo while remaining fast and reliable to scan on both iPhone and Android cameras."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I download PNG or SVG for printing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Download PNG for digital sharing, WhatsApp messages, email signatures, and standard office printers. Download SVG if you are sending the file to a graphic designer or print shop for large standees, posters, or window decals, as SVG scales to any size without losing sharpness."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do more Google reviews help my local SEO?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Google uses review count, review velocity, and star rating as key local ranking signals. Collecting steady reviews from real customers helps your business appear higher in the Google Maps 3-Pack and local search results."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="https://unpkg.com/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
+
+  <style>
+    .crumb { font-size: 13px; opacity: 0.75; margin-bottom: 14px; }
+    .crumb a { color: inherit; text-decoration: none; }
+    .crumb a:hover { text-decoration: underline; }
+
+    .tool-shell {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: start;
+      margin-top: 28px;
+    }
+    @media (max-width: 860px) {
+      .tool-shell { grid-template-columns: 1fr; }
+    }
+
+    .tool-box {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 14px;
+      padding: 26px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .mode-tabs {
+      display: inline-flex;
+      background: #f3f4f6;
+      padding: 4px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      gap: 4px;
+    }
+    .mode-tab {
+      border: none;
+      background: transparent;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #4b5563;
+      transition: all 0.15s ease;
+    }
+    .mode-tab.active {
+      background: #ffffff;
+      color: #111827;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .field-group { margin-bottom: 18px; }
+    .field-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+    .field-hint {
+      font-size: 12.5px;
+      color: #6b7280;
+      margin-top: 5px;
+      line-height: 1.45;
+    }
+    .tool-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 15px;
+      color: #111827;
+      background: #ffffff;
+      box-sizing: border-box;
+    }
+    .tool-input:focus {
+      outline: none;
+      border-color: #f25c05;
+      box-shadow: 0 0 0 3px rgba(242, 92, 5, 0.12);
+    }
+
+    .link-output-wrap {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 20px;
+    }
+    .link-output-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .link-output-row input {
+      flex: 1;
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 13.5px;
+      color: #111827;
+    }
+    .copy-btn {
+      background: #111827;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .copy-btn:hover { opacity: 0.9; }
+
+    .custom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 520px) {
+      .custom-grid { grid-template-columns: 1fr; }
+    }
+
+    .color-picker-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      padding: 8px 12px;
+      background: #ffffff;
+    }
+    .color-picker-box input[type="color"] {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .color-picker-box span {
+      font-size: 13.5px;
+      font-family: monospace;
+      color: #374151;
+    }
+
+    .logo-upload-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .clear-logo-btn {
+      background: #fee2e2;
+      color: #991b1b;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .preview-card {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 14px;
+      padding: 26px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      position: sticky;
+      top: 24px;
+    }
+    .qr-stage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 260px;
+      background: #f9fafb;
+      border: 1px dashed #d1d5db;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 14px 0;
+    }
+    .qr-stage canvas, .qr-stage svg {
+      max-width: 100%;
+      height: auto !important;
+      border-radius: 6px;
+    }
+    .biz-caption {
+      font-weight: 700;
+      font-size: 16px;
+      color: #111827;
+      margin-bottom: 4px;
+      min-height: 22px;
+    }
+    .scan-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #065f46;
+      background: #d1fae5;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .dl-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .dl-btn {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+    }
+    .test-link {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #4b5563;
+      text-decoration: underline;
+    }
+    .status-note {
+      font-size: 13px;
+      color: #059669;
+      margin-top: 8px;
+      min-height: 18px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">New Search Architecture Ready: Google AI Overviews, Perplexity &amp; ChatGPT Optimization &nbsp;&bull;&nbsp; 10+ Years Active &nbsp;&bull;&nbsp; 100+ Clients Guided</div>
+
+  <header class="hdr">
+    <div class="wrap hdr-in">
+      <a class="logo" href="/" aria-label="Indian Digitals home">
+        <img src="/android-chrome-192x192.png" width="36" height="36" alt="Indian Digitals logo">
+        <span>INDIAN<b>DIGITALS</b></span>
+      </a>
+      <button class="burger" aria-label="Menu" onclick="document.body.classList.toggle('nav-open')">&#9776;</button>
+      <nav class="nav">
+        <div class="dd">
+          <a href="/services/">Services &#9662;</a>
+          <div class="ddm">
+            <a href="/services/website-development/">Website Development</a>
+            <a href="/services/seo-services/">Search Engine Optimization (SEO)</a>
+            <a href="/services/local-seo-google-business-profile/">Local SEO &amp; Google Business Profile</a>
+            <a href="/services/ai-search-optimization/">AI Search Optimization (GEO, AEO, LLMO)</a>
+            <a href="/services/paid-media-management/">Paid Media Management</a>
+            <a href="/services/social-media-marketing/">Social Media Marketing</a>
+            <a href="/services/linkedin-strategy-ghostwriting/">LinkedIn Strategy &amp; Executive Ghostwriting</a>
+            <a href="/services/content-strategy/">Content Strategy &amp; Editorial Planning</a>
+            <a href="/services/content-writing-blog-production/">Content Writing &amp; Blog Production</a>
+            <a href="/services/b2b-business-writing/">B2B Business Writing &amp; Sales Enablement</a>
+            <a href="/services/email-marketing/">Email Marketing &amp; Lifecycle Automation</a>
+            <a href="/services/graphic-design/">Graphic Design &amp; Creative Production</a>
+            <a href="/services/complete-digital-marketing/">Complete Digital Marketing Management</a>
+          </div>
+        </div>
+        <a href="/services/ai-search-optimization/">AI Search</a>
+        <div class="dd">
+          <a href="/industries/">Industries &#9662;</a>
+          <div class="ddm">
+            <a href="/industries/b2b-professional-services/">B2B &amp; Professional Services</a>
+            <a href="/industries/saas-technology/">SaaS &amp; Technology</a>
+            <a href="/industries/manufacturing/">Manufacturing &amp; Heavy Industry</a>
+            <a href="/industries/healthcare-diagnostics/">Healthcare &amp; Diagnostics</a>
+            <a href="/industries/real-estate/">Real Estate &amp; Developments</a>
+            <a href="/industries/financial-services/">Financial Services</a>
+            <a href="/industries/ecommerce-retail/">E-commerce &amp; Retail Brands</a>
+            <a href="/industries/education-edtech/">Education &amp; EdTech</a>
+            <a href="/industries/logistics-supply-chain/">Logistics &amp; Supply Chain</a>
+            <a href="/industries/consulting-advisory/">Consulting &amp; Advisory</a>
+            <a href="/industries/local-multi-unit-businesses/">Local Multi-Unit Businesses</a>
+            <a href="/industries/startups-scaleups/">Funded Startups &amp; Scaleups</a>
+          </div>
+        </div>
+        <div class="dd">
+          <a href="/locations/">Locations &#9662;</a>
+          <div class="ddm">
+            <a href="/digital-marketing-agency-in-noida/">Noida</a>
+            <a href="/digital-marketing-agency-in-varanasi/">Varanasi</a>
+            <a href="/digital-marketing-agency-in-ahmedabad/">Ahmedabad</a>
+            <a href="/digital-marketing-agency-in-prayagraj/">Prayagraj</a>
+            <a href="/locations/"><b>All locations &rarr;</b></a>
+          </div>
+        </div>
+        <a href="/blog">Insights</a>
+        <a href="/contact/">Contact</a>
+        <a class="btn sm" href="/contact/">Let's Talk</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="crumb"><a href="/">Home</a> &rsaquo; Free Tools &rsaquo; Google Review Link &amp; QR Code Generator</p>
+        <p class="kick">Free Local SEO Tool &bull; No Sign-Up Required</p>
+        <h1>Google Review Link &amp; QR Code Generator</h1>
+        <p class="lead">Generate a direct Google Business Profile review link and a printable QR code in seconds. Paste your Google review link or Place ID, customize your brand colors and logo, and download high-resolution PNG or SVG files for free.</p>
+
+        <div class="tool-shell">
+          <div class="tool-box">
+            <div class="mode-tabs" role="tablist" aria-label="Input type">
+              <button type="button" class="mode-tab active" id="tabUrl" onclick="setInputMode('url')">1. Paste Google Review Link</button>
+              <button type="button" class="mode-tab" id="tabPlaceId" onclick="setInputMode('placeid')">2. Enter Google Place ID</button>
+            </div>
+
+            <div class="field-group" id="urlInputGroup">
+              <label class="field-label" for="reviewUrlInput">Your Google Review URL</label>
+              <input class="tool-input" id="reviewUrlInput" type="url" placeholder="https://g.page/r/YourBusinessID/review" oninput="updateGenerator()">
+              <p class="field-hint">Copy this from your Google Business Profile dashboard under <b>Ask for reviews</b>.</p>
+            </div>
+
+            <div class="field-group" id="placeIdInputGroup" hidden>
+              <label class="field-label" for="placeIdInput">Your Google Place ID</label>
+              <input class="tool-input" id="placeIdInput" type="text" placeholder="e.g. ChIJN1t_tDeuEmsRUsoyG83frY4" oninput="updateGenerator()">
+              <p class="field-hint">We automatically convert your Place ID into the official <code>search.google.com/local/writereview</code> link.</p>
+            </div>
+
+            <div class="link-output-wrap">
+              <label class="field-label" for="finalReviewLink">Your Direct Google Review Link (Share on WhatsApp, SMS, or Email)</label>
+              <div class="link-output-row">
+                <input id="finalReviewLink" type="text" readonly value="https://g.page/r/example/review">
+                <button type="button" class="copy-btn" onclick="copyReviewLink()">Copy Link</button>
+              </div>
+              <p class="status-note" id="copyStatus"></p>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="bizLabelInput">Business Name (Optional label for your reference)</label>
+              <input class="tool-input" id="bizLabelInput" type="text" placeholder="e.g. Sharma Dental Clinic" oninput="updateGenerator()">
+            </div>
+
+            <div class="custom-grid">
+              <div>
+                <label class="field-label" for="qrFgColor">QR Code Color</label>
+                <div class="color-picker-box">
+                  <input type="color" id="qrFgColor" value="#111827" oninput="updateGenerator()">
+                  <span id="fgHex">#111827</span>
+                </div>
+              </div>
+              <div>
+                <label class="field-label" for="qrBgColor">Background Color</label>
+                <div class="color-picker-box">
+                  <input type="color" id="qrBgColor" value="#ffffff" oninput="updateGenerator()">
+                  <span id="bgHex">#FFFFFF</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-group" style="margin-bottom:0;">
+              <label class="field-label" for="logoFileInput">Center Logo (Optional PNG, JPG, or SVG)</label>
+              <div class="logo-upload-row">
+                <input type="file" id="logoFileInput" accept="image/*" onchange="handleLogoUpload(event)">
+                <button type="button" class="clear-logo-btn" id="clearLogoBtn" onclick="clearLogo()" hidden>Remove Logo</button>
+              </div>
+              <p class="field-hint">Keep strong contrast (dark QR dots on a light background) so phone cameras scan instantly.</p>
+            </div>
+          </div>
+
+          <div class="preview-card">
+            <span class="scan-badge">High Scannability &bull; Lifetime Static QR</span>
+            <div class="biz-caption" id="previewCaption">Your Google Review QR Code</div>
+            <div class="qr-stage" id="qrCanvasContainer" aria-label="Live Google Review QR Code Preview"></div>
+            <p class="field-hint" style="margin-bottom:14px;">Point your phone camera at the preview above to test before printing.</p>
+
+            <div class="dl-row">
+              <button type="button" class="btn dl-btn" onclick="downloadQR('png')">Download PNG</button>
+              <button type="button" class="btn ghost dl-btn" onclick="downloadQR('svg')">Download SVG</button>
+            </div>
+            <a class="test-link" id="testReviewAnchor" href="https://g.page/r/example/review" target="_blank" rel="noopener noreferrer">Test review link in new tab &#8599;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec alt">
+      <div class="wrap">
+        <p class="kick">Simple 3-step setup</p>
+        <h2>How to create a Google review link and QR code</h2>
+        <p class="sub">No account, no subscription, and no monthly scan limits. Everything runs directly in your browser.</p>
+        <div class="steps">
+          <div class="step">
+            <i>1</i>
+            <h3>Get your review link or Place ID</h3>
+            <small>From Google Business Profile</small>
+            <p>Search your business name on Google while logged in, click <b>Ask for reviews</b>, and copy your short <code>g.page</code> link. Or paste your Google Maps Place ID to generate the direct review URL.</p>
+          </div>
+          <div class="step">
+            <i>2</i>
+            <h3>Customize colors and logo</h3>
+            <small>Match your brand</small>
+            <p>Pick your brand color, upload your logo for the center of the QR code, and copy your direct review link to share via WhatsApp, SMS, or email.</p>
+          </div>
+          <div class="step">
+            <i>3</i>
+            <h3>Download and print</h3>
+            <small>PNG or vector SVG</small>
+            <p>Download a sharp PNG for digital screens and table cards, or an SVG file for large posters, reception standees, and packaging.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap two-col">
+        <div>
+          <p class="kick">Why direct review links matter</p>
+          <h2>What is a Google Review Link and QR Code Generator?</h2>
+          <p>When customers have to search for your business name on Google, open your profile, scroll to the reviews tab, and tap write a review, most of them give up halfway. A direct Google review link removes those extra steps.</p>
+          <p>Our free generator builds a direct URL and encodes it into a high-contrast QR code. When a customer scans the code with their iPhone or Android camera, their browser opens your Google Business Profile with the 5-star rating window ready to submit.</p>
+          <p>Because the QR code encodes your permanent Google link directly, it never expires and never shows third-party ads or redirect screens.</p>
+        </div>
+        <div class="vs">
+          <div class="card static">
+            <h3>Direct Review Link (Digital)</h3>
+            <p>Copy your clean review URL and send it right after a purchase or appointment via WhatsApp, SMS, email receipts, or post-service follow-ups.</p>
+          </div>
+          <div class="card static hl">
+            <h3>Scannable QR Code (In-Person)</h3>
+            <p>Place the printed QR code at your checkout counter, restaurant table, clinic reception, or product box so happy customers leave feedback before they walk out.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec alt">
+      <div class="wrap">
+        <p class="kick">Practical placements</p>
+        <h2>Where to display your Google review QR code</h2>
+        <p class="sub">Timing is everything. Ask for a review at the exact moment a customer experiences great service.</p>
+        <div class="grid">
+          <div class="card static">
+            <h3>Checkout Counters &amp; Reception Desks</h3>
+            <p>Place a small acrylic standee near the billing desk where customers wait for a few seconds while paying.</p>
+          </div>
+          <div class="card static">
+            <h3>Restaurant Tables &amp; Menus</h3>
+            <p>Print the QR code on table tents or bill folders so diners can rate their meal right after dessert.</p>
+          </div>
+          <div class="card static">
+            <h3>Invoices, Receipts &amp; Visiting Cards</h3>
+            <p>Add the QR code to printed invoices, warranty cards, or technician business cards for home-service visits.</p>
+          </div>
+          <div class="card static">
+            <h3>Product Packaging &amp; Thank-You Cards</h3>
+            <p>Include a small insert card inside e-commerce parcels inviting buyers to share their unboxing feedback.</p>
+          </div>
+          <div class="card static">
+            <h3>Salons, Clinics &amp; Repair Shops</h3>
+            <p>Place a neat sticker near mirrors or exit doors so clients can leave a rating while their experience is fresh.</p>
+          </div>
+          <div class="card static">
+            <h3>WhatsApp &amp; Email Follow-Ups</h3>
+            <p>Use the generated direct review link in automated WhatsApp messages or email signatures for remote clients.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap narrow">
+        <p class="kick">Common questions</p>
+        <h2>Frequently asked questions</h2>
+
+        <details class="faq">
+          <summary>How do I find my Google Place ID or review link?</summary>
+          <p>Sign in to the Google account that manages your Google Business Profile. Search your business name on Google, click <b>Ask for reviews</b> in your profile dashboard, and copy the short <code>g.page</code> link. If you have a Google Place ID instead, switch to the Place ID tab above and paste it in to create the official review link automatically.</p>
+        </details>
+
+        <details class="faq">
+          <summary>Do these Google review QR codes expire or have a scan limit?</summary>
+          <p>No. This tool creates static QR codes that store your review URL directly inside the pattern. There are no middleman redirects, no expiration dates, and no scan limits.</p>
+        </details>
+
+        <details class="faq">
+          <summary>Does the QR code open the 5-star review box directly?</summary>
+          <p>Yes. Scanning the code takes the user straight to your Google Business Profile review form so they can tap the stars and write a comment immediately, provided they are logged into a Google account on their phone.</p>
+        </details>
+
+        <details class="faq">
+          <summary>Is it safe to add my business logo inside the QR code?</summary>
+          <p>Yes. The generator sets error correction to Level H (high), which allows up to 30% of the QR pattern to be covered by your logo while remaining easy to scan. Always test the final code with your phone camera before printing in bulk.</p>
+        </details>
+
+        <details class="faq">
+          <summary>Should I download PNG or SVG?</summary>
+          <p>Use <b>PNG</b> for websites, social media, WhatsApp, email signatures, and standard office printing. Use <b>SVG</b> if you are sending the QR code to a designer or print shop for large banners, glass decals, or packaging, because SVG stays sharp at any size.</p>
+        </details>
+
+        <details class="faq">
+          <summary>How do Google reviews improve local SEO rankings?</summary>
+          <p>Google evaluates review quantity, how recently reviews were posted, and your overall star rating when ranking local businesses. Earning steady reviews helps your business rank higher in Google Maps and local search results.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="sec alt">
+      <div class="wrap two-col">
+        <div>
+          <p class="kick">Need help growing local visibility?</p>
+          <h2>Want more than a QR code? We manage Local SEO &amp; Google Business Profiles.</h2>
+          <p>Collecting reviews is step one. Indian Digitals helps local businesses and multi-location brands rank in the Google Maps 3-Pack, optimize service pages, and get recommended by AI search engines like ChatGPT and Google AI Overviews.</p>
+          <a class="btn" href="/services/local-seo-google-business-profile/">Explore Local SEO Services</a>
+          <a class="btn ghost" href="/contact/">Talk to Our Team</a>
+        </div>
+        <div class="card static">
+          <h3>What we handle for local brands</h3>
+          <p><b>Google Business Profile Optimization:</b> Categories, services, local posts, Q&amp;A, and photo updates.</p>
+          <p><b>Review &amp; Reputation Workflows:</b> Ethical review generation systems and response management.</p>
+          <p style="margin-bottom:0;"><b>Local Landing Pages &amp; Citations:</b> City-specific pages and consistent directory listings.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ftr">
+    <div class="wrap fg">
+      <div>
+        <a class="logo" href="/">
+          <img src="/android-chrome-192x192.png" width="32" height="32" alt="Indian Digitals">
+          <span>INDIAN<b>DIGITALS</b></span>
+        </a>
+        <p>Digital marketing for businesses ready to be found, trusted, and chosen across traditional search, social channels, and AI answer engines.</p>
+        <p>
+          <a href="mailto:contact@indiandigitals.com">contact@indiandigitals.com</a><br>
+          <a href="tel:+919451300365">+91 94513 00365</a>
+        </p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="/services/website-development/">Website Development</a>
+        <a href="/services/seo-services/">Search Engine Optimization (SEO)</a>
+        <a href="/services/local-seo-google-business-profile/">Local SEO &amp; Google Business Profile</a>
+        <a href="/services/ai-search-optimization/">AI Search Optimization (GEO, AEO, LLMO)</a>
+        <a href="/services/paid-media-management/">Paid Media Management</a>
+        <a href="/services/social-media-marketing/">Social Media Marketing</a>
+        <a href="/services/linkedin-strategy-ghostwriting/">LinkedIn Strategy &amp; Executive Ghostwriting</a>
+        <a href="/services/">All services</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="/industries/">Industries</a>
+        <a href="/locations/">Locations</a>
+        <a href="/blog">Insights</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms-of-engagement/">Terms of Engagement</a>
+      </div>
+      <div>
+        <h4>Offices</h4>
+        <a href="/digital-marketing-agency-in-noida/">Noida</a>
+        <a href="/digital-marketing-agency-in-varanasi/">Varanasi</a>
+        <a href="/digital-marketing-agency-in-ahmedabad/">Ahmedabad</a>
+        <a href="/digital-marketing-agency-in-prayagraj/">Prayagraj</a>
+        <h4 style="margin-top:18px">Connect</h4>
+        <a href="https://www.linkedin.com/company/indian-digitals/" target="_blank" rel="noopener noreferrer">LinkedIn &#8599;</a>
+        <a href="https://x.com/IndianDigitals_" target="_blank" rel="noopener noreferrer">X &#8599;</a>
+        <a href="https://in.pinterest.com/indiandigitalshq/" target="_blank" rel="noopener noreferrer">Pinterest &#8599;</a>
+        <a href="https://www.facebook.com/indiandigitalshq/" target="_blank" rel="noopener noreferrer">Facebook &#8599;</a>
+        <a href="https://www.instagram.com/indiandigitalshq/" target="_blank" rel="noopener noreferrer">Instagram &#8599;</a>
+        <a href="https://www.youtube.com/@IndianDigitalshq" target="_blank" rel="noopener noreferrer">YouTube &#8599;</a>
+      </div>
+    </div>
+    <div class="wrap copy">&copy; Indian Digitals. All rights reserved.</div>
+  </footer>
+
+  <a class="wa" href="https://wa.me/919451300365?text=Hi%20Indian%20Digitals%2C%20I%27d%20like%20to%20grow%20my%20business." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" width="30" height="30" fill="#fff"><path d="M16 3C9 3 3.4 8.6 3.4 15.5c0 2.3.6 4.4 1.7 6.3L3 29l7.4-2c1.8 1 3.800 1.500 5.600 1.500 6.900 0 12.600-5.600 12.600-12.500S22.900 3 16 3zm0 22.800c-1.800 0-3.500-.5-5-1.400l-.4-.2-4.400 1.200 1.200-4.300-.3-.4a10.200 10.200 0 0 1-1.600-5.500C5.500 9.900 10.200 5.300 16 5.300s10.500 4.600 10.500 10.300S21.800 25.800 16 25.800zm5.800-7.600c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.100-.7l.5-.6c.1-.2.200-.3.300-.5.100-.2 0-.4 0-.6l-1-2.300c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.100-.9.400-.3.300-1.200 1.200-1.200 2.900s1.200 3.400 1.400 3.600c.2.200 2.400 3.700 5.800 5.100.8.400 1.500.6 2 .7.8.3 1.600.2 2.200.1.700-.1 1.900-.8 2.200-1.500.3-.7.300-1.400.2-1.500-.1-.2-.3-.3-.6-.4z"/></svg>
+  </a>
+  <div class="wapop" id="wapop" hidden>
+    <button aria-label="Close" onclick="this.parentNode.hidden=true;sessionStorage.setItem('wapop','1')">&times;</button>
+    <b>Get your brand more business today</b>
+    <span>Chat with our team on WhatsApp.</span>
+    <a href="https://wa.me/919451300365?text=Hi%20Indian%20Digitals%2C%20I%27d%20like%20to%20grow%20my%20business." target="_blank" rel="noopener noreferrer">Start chat &rarr;</a>
+  </div>
+
+  <script src="/site.js" defer></script>
+  <script>
+    let currentMode = 'url';
+    let uploadedLogoDataUrl = '';
+    const defaultDemoUrl = 'https://g.page/r/example/review';
+
+    const qrCode = new QRCodeStyling({
+      width: 240,
+      height: 240,
+      type: 'svg',
+      data: defaultDemoUrl,
+      image: '',
+      dotsOptions: {
+        color: '#111827',
+        type: 'rounded'
+      },
+      cornersSquareOptions: {
+        type: 'extra-rounded'
+      },
+      backgroundOptions: {
+        color: '#ffffff'
+      },
+      imageOptions: {
+        crossOrigin: 'anonymous',
+        margin: 6,
+        imageSize: 0.35
+      },
+      qrOptions: {
+        errorCorrectionLevel: 'H'
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('qrCanvasContainer');
+      qrCode.append(container);
+    });
+
+    function setInputMode(mode) {
+      currentMode = mode;
+      document.getElementById('tabUrl').classList.toggle('active', mode === 'url');
+      document.getElementById('tabPlaceId').classList.toggle('active', mode === 'placeid');
+      document.getElementById('urlInputGroup').hidden = mode !== 'url';
+      document.getElementById('placeIdInputGroup').hidden = mode !== 'placeid';
+      updateGenerator();
+    }
+
+    function buildTargetUrl() {
+      if (currentMode === 'placeid') {
+        const pid = document.getElementById('placeIdInput').value.trim();
+        if (!pid) return defaultDemoUrl;
+        return 'https://search.google.com/local/writereview?placeid=' + encodeURIComponent(pid);
+      } else {
+        let raw = document.getElementById('reviewUrlInput').value.trim();
+        if (!raw) return defaultDemoUrl;
+        if (!/^https?:\/\//i.test(raw)) {
+          raw = 'https://' + raw;
+        }
+        return raw;
+      }
+    }
+
+    function updateGenerator() {
+      const targetUrl = buildTargetUrl();
+      const fg = document.getElementById('qrFgColor').value;
+      const bg = document.getElementById('qrBgColor').value;
+      const bizName = document.getElementById('bizLabelInput').value.trim();
+
+      document.getElementById('fgHex').textContent = fg.toUpperCase();
+      document.getElementById('bgHex').textContent = bg.toUpperCase();
+      document.getElementById('finalReviewLink').value = targetUrl;
+      document.getElementById('testReviewAnchor').href = targetUrl;
+      document.getElementById('previewCaption').textContent = bizName ? bizName : 'Your Google Review QR Code';
+
+      qrCode.update({
+        data: targetUrl,
+        image: uploadedLogoDataUrl || '',
+        dotsOptions: { color: fg, type: 'rounded' },
+        backgroundOptions: { color: bg }
+      });
+    }
+
+    function handleLogoUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        uploadedLogoDataUrl = e.target.result;
+        document.getElementById('clearLogoBtn').hidden = false;
+        updateGenerator();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearLogo() {
+      uploadedLogoDataUrl = '';
+      document.getElementById('logoFileInput').value = '';
+      document.getElementById('clearLogoBtn').hidden = true;
+      updateGenerator();
+    }
+
+    function copyReviewLink() {
+      const input = document.getElementById('finalReviewLink');
+      navigator.clipboard.writeText(input.value).then(() => {
+        const status = document.getElementById('copyStatus');
+        status.textContent = 'Copied to clipboard!';
+        setTimeout(() => { status.textContent = ''; }, 2500);
+      });
+    }
+
+    function downloadQR(ext) {
+      const bizName = document.getElementById('bizLabelInput').value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const fileName = (bizName ? bizName + '-' : '') + 'google-review-qr';
+      qrCode.download({ name: fileName, extension: ext });
+    }
+  </script>
+</body>
+</html>
